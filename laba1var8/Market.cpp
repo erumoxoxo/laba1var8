@@ -5,17 +5,18 @@
 //одним массивом данных
 /*char* Market::get_Year() const //год выпуска
 {
-	return "--";
+char* n = "mmm";
+return n;
 }
 
 char* Market::get_Amount() const //объем страниц
 {
-	return "--";
+return "--";
 }
 
 char* Market::get_Auhtor() const //автор
 {
-	return "--";
+return "--";
 }*/
 
 void Market::set_Year(char* str)//год выпуска

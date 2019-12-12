@@ -1,5 +1,7 @@
-#pragma once
 #include "Market.h"
+
+#pragma once
+const char* const Textbook_file = "Textbook.txt";
 
 class Textbook : public Market
 {

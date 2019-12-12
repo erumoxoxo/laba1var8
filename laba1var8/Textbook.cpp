@@ -1,25 +1,19 @@
 ﻿#include "Textbook.h"
 #include <iostream>
+#include <fstream>
 
 Textbook::Textbook() :
 	name_(new char[size_n_d]), price_(new char[size_pya]), institut_(new char[size_n_d]),
 	year_(new char[size_pya]), amount_(new char[size_pya]), auhtor_(new char[size_a]), year_study_(new char[size_pya])
 {
-	std::cout << "Textbook: конструктор по умолчанию n";
-/*	name_ = "--";
-	price_ = "--";
-	institut_ = "--";
-	year_ = "--";
-	amount_ = "--";
-	auhtor_ = "--";
-	year_study_ = "--";
-*/}
+	std::cout << "Textbook: 觐眈蝠箨蝾� 镱 箪铍鬣龛n";
+}
 
 Textbook::Textbook(char* name, char* price, char* institut, char* year, char* amount, char* auhtor, char* year_study) :
 	name_(new char[size_n_d]), price_(new char[size_pya]), institut_(new char[size_n_d]),
 	year_(new char[size_pya]), amount_(new char[size_pya]), auhtor_(new char[size_a]), year_study_(new char[size_pya])
 {
-	std::cout << "Textbook: конструктор с параметрами n";
+	std::cout << "Textbook: 觐眈蝠箨蝾� � 镟疣戾蝠囔鑌n";
 	copy(name_, name, size_n_d);
 	copy(price_, price, size_pya);
 	copy(institut_, institut, size_n_d);
@@ -33,7 +27,7 @@ Textbook::Textbook(const Textbook& obj) :
 	name_(new char[size_n_d]), price_(new char[size_pya]), institut_(new char[size_n_d]),
 	year_(new char[size_pya]), amount_(new char[size_pya]), auhtor_(new char[size_a]), year_study_(new char[size_pya])
 {
-	std::cout << "Textbook: Конструктор копирования \n";
+	std::cout << "Textbook: 觐眈蝠箨蝾� 觐镨痤忄龛\n";
 	copy(name_, obj.name_, size_n_d);
 	copy(price_, obj.price_, size_pya);
 	copy(institut_, obj.institut_, size_n_d);
@@ -117,16 +111,30 @@ void Textbook::print() const
 
 void Textbook::out_file() const
 {
-
+	using std::ofstream;
+	ofstream file;
+	file.open(Textbook_file, std::ios::app);
+	if (file.is_open())
+	{
+		file << std::endl;
+		file << name_ << std::endl;
+		file << price_ << std::endl;
+		file << institut_ << std::endl;
+		file << year_ << std::endl;
+		file << amount_ << std::endl;
+		file << auhtor_ << std::endl;
+		file << year_study_;
+	}
+	file.close();
 }
 
 Textbook::~Textbook()
 {
-	delete name_;
-	delete price_;
-	delete auhtor_;
-	delete year_;
-	delete year_study_;
-	delete amount_;
-	delete institut_;
+	delete[] name_;
+	delete[] price_;
+	delete[] auhtor_;
+	delete[] year_;
+	delete[] year_study_;
+	delete[] amount_;
+	delete[] institut_;
 }

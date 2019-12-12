@@ -1,25 +1,19 @@
 #include "Book.h"
 #include <iostream>
+#include <fstream>
 
 Book::Book() :
 	name_(new char[size_n_d]), price_(new char[size_pya]), annotate_(new char[size_n_d]),
 	year_(new char[size_pya]), amount_(new char[size_pya]), auhtor_(new char[size_a]), style_(new char[size_a])
 {
-	std::cout << "Book: конструктор по умолчаниюn";
-/*	name_ = "--";
-	price_ = "--";
-	annotate_ = "--";
-	year_ = "--";
-	amount_ = "--";
-	auhtor_ = "--";
-	style_ = "--";
-*/}
+	std::cout << "Book: Конструктор по умолчанию n";
+}
 
 Book::Book(char* name, char* price, char* annotate, char* year, char* amount, char* auhtor, char* style) :
 	name_(new char[size_n_d]), price_(new char[size_pya]), annotate_(new char[size_n_d]),
 	year_(new char[size_pya]), amount_(new char[size_pya]), auhtor_(new char[size_a]), style_(new char[size_a])
 {
-	std::cout << "Book: конструктор с параметрами n";
+	std::cout << "Book: Конструктор с параметрами n";
 	copy(name_, name, size_n_d);
 	copy(price_, price, size_pya);
 	copy(annotate_, annotate, size_n_d);
@@ -33,7 +27,7 @@ Book::Book(const Book& obj) :
 	name_(new char[size_n_d]), price_(new char[size_pya]), annotate_(new char[size_n_d]),
 	year_(new char[size_pya]), amount_(new char[size_pya]), auhtor_(new char[size_a]), style_(new char[size_a])
 {
-	std::cout << "Book: конструктор копирования \n";
+	std::cout << "Book: Конструктор копирования \n";
 	copy(name_, obj.name_, size_n_d);
 	copy(price_, obj.price_, size_pya);
 	copy(annotate_, obj.annotate_, size_n_d);
@@ -112,7 +106,21 @@ void Book::print() const
 
 void Book::out_file() const
 {
-
+	using std::ofstream;
+	ofstream file;
+	file.open(Book_file, std::ios::app);
+	if (file.is_open())
+	{
+		file << std::endl;
+		file << name_ << std::endl;
+		file << price_ << std::endl;
+		file << annotate_ << std::endl;
+		file << year_ << std::endl;
+		file << amount_ << std::endl;
+		file << auhtor_ << std::endl;
+		file << style_;
+	}
+	file.close();
 }
 
 Book::~Book()

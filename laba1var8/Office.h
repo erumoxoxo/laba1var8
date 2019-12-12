@@ -1,5 +1,8 @@
-#pragma once
 #include "Market.h"
+
+#pragma once
+const char* const Office_file = "Office.txt";
+
 class Office : public Market
 {
 private:
@@ -17,12 +20,12 @@ public:
 
 	char* get_Name() const;//доступ к названию
 	char* get_Price() const;//к цене
-	char* get_Mission() const;//описание, доступ к аннотации,предназначению и назначению(канцелярия)
+	char* get_Descript() const;//описание, доступ к аннотации,предназначению и назначению(канцелярия)
 	char* get_Color() const;//цвет
 
 	void set_Name(char*);//доступ к названию
 	void set_Price(char*);//к цене
-	void set_Mission(char*);//описание, доступ к аннотации,предназначению и назначению(канцелярия)
+	void set_Descript(char*);//описание, доступ к аннотации,предназначению и назначению(канцелярия)
 	void set_Color(char*);//цвет
 
 	void print() const;//вывод на экран
@@ -30,4 +33,3 @@ public:
 
 	~Office();
 };
-

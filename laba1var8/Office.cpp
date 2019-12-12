@@ -1,20 +1,17 @@
 #include "Office.h"
 #include <iostream>
+#include <fstream>
 
 Office::Office() :
 	name_(new char[size_n_d]), price_(new char[size_pya]), mission_(new char[size_n_d]), color_(new char[size_pya])
 {
-	std::cout << "Office: конструктор по умолчанию n";
-/*	name_ = "--";
-	price_ = "--";
-	mission_ = "--";
-	color_ = "--";
-*/}
+	std::cout << "Office: ?????? ? ?????n";
+}
 
 Office::Office(char* name, char* price, char* mission, char* color) :
 	name_(new char[size_n_d]), price_(new char[size_pya]), mission_(new char[size_n_d]), color_(new char[size_pya])
 {
-	std::cout << "Office: конструктор с параметрами n";
+	std::cout << "Office: ?????? ? ??????n";
 	copy(name_, name, size_n_d);
 	copy(price_, price, size_pya);
 	copy(mission_, mission, size_n_d);
@@ -24,7 +21,7 @@ Office::Office(char* name, char* price, char* mission, char* color) :
 Office::Office(const Office& obj) :
 	name_(new char[size_n_d]), price_(new char[size_pya]), mission_(new char[size_n_d]), color_(new char[size_pya])
 {
-	std::cout << "Office: конструктор \n";
+	std::cout << "Office: ?????? ??????\n";
 	copy(name_, obj.name_, size_n_d);
 	copy(price_, obj.price_, size_pya);
 	copy(mission_, obj.mission_, size_n_d);
@@ -45,7 +42,7 @@ char* Office::get_Price() const {
 	return price_;
 }
 
-char* Office::get_Mission() const {
+char* Office::get_Descript() const {
 	return mission_;
 }
 
@@ -61,7 +58,7 @@ void Office::set_Price(char* price) {
 	copy(price_, price, size_pya);
 }
 
-void Office::set_Mission(char* mission) {
+void Office::set_Descript(char* mission) {
 	copy(mission_, mission, size_n_d);
 }
 
@@ -75,13 +72,24 @@ void Office::print() const
 	using std::endl;
 	cout << "Name: " << name_ << endl;
 	cout << "Price: " << price_ << endl;
-	cout << "Annotate: " << mission_ << endl;
-	cout << "Auhtor: " << color_ << endl;
+	cout << "Mission: " << mission_ << endl;
+	cout << "Color: " << color_ << endl;
 }
 
 void Office::out_file() const
 {
-
+	using std::ofstream;
+	ofstream file;
+	file.open(Office_file, std::ios::app);
+	if (file.is_open())
+	{
+		file << std::endl;
+		file << name_ << std::endl;
+		file << price_ << std::endl;
+		file << mission_ << std::endl;
+		file << color_;
+	}
+	file.close();
 }
 
 Office::~Office()
